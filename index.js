@@ -36,16 +36,15 @@ const resources = {
 /* eslint-enable global-require */
 
 /**
- * withEnvProxy configures an HTTPS proxy if required to reach the Cloudflare API.
+ * withProxy configures an HTTPS proxy if required to reach the Cloudflare API.
  *
  * @private
  * @param {Object} opts - The current Cloudflare options
+ * @param {string} proxyString - Stringed proxy, example - https://username:password@your-proxy.com:port
  */
-const withEnvProxy = function withEnvProxy(opts) {
-  /* eslint-disable no-process-env */
-  const httpsProxy = process.env.HTTPS_PROXY || process.env.https_proxy;
-  const noProxy = process.env.NO_PROXY || process.env.no_proxy;
-  /* eslint-enable no-process-env */
+const withProxy = function withProxy(opts, proxyString) {
+  const httpsProxy = proxyString;
+  const noProxy = '';
 
   if (httpsProxy) {
     const agent = proxy.proxyAgent(
@@ -68,6 +67,7 @@ const withEnvProxy = function withEnvProxy(opts) {
  * @param {string} auth.email - The account email address
  * @param {string} auth.key - The account API key
  * @param {string} auth.token - The account API token
+ * @param {string} proxyString - Stringed proxy, example - https://username:password@your-proxy.com:port
  *
  * @property {DNSRecords} dnsRecords - DNS Records instance
  * @property {IPs} ips - IPs instance
@@ -79,14 +79,14 @@ const withEnvProxy = function withEnvProxy(opts) {
  */
 const Cloudflare = auto(
   prototypal({
-    constructor: function constructor(auth) {
+    constructor: function constructor(auth, proxyString) {
       const opts = {
         email: auth && auth.email,
         key: auth && auth.key,
         token: auth && auth.token,
       };
 
-      withEnvProxy(opts);
+      withProxy(opts, proxyString);
 
       const client = new Client(opts);
 

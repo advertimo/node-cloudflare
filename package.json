@@ -1,6 +1,6 @@
 {
   "name": "cloudflare",
-  "version": "2.9.8",
+  "version": "2.9.9",
   "description": "CloudFlare API client",
   "author": "Terin Stock <terinjokes@gmail.com>",
   "bugs": {

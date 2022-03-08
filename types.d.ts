@@ -214,12 +214,18 @@ declare namespace Cloudflare {
         period: number,
         action: {
           mode: string,
-          timeout: string,
+          timeout: number,
           response?: {
             content_type: string,
             body: string
           }
         }
+      },
+    ): ResponseObjectPromise;
+    enableSll(
+      id: string,
+      params: {
+        enabled: boolean
       },
     ): ResponseObjectPromise;
     browse(): ResponseObjectPromise;

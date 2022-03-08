@@ -194,6 +194,34 @@ declare namespace Cloudflare {
         prefixes?: string[] | undefined;
       },
     ): ResponseObjectPromise;
+    setRateLimits(
+      id: string,
+      params: {
+        match: {
+          request: {
+            methods: string[],
+            schemes: string[],
+            url: string
+          },
+          response: {},
+          headers: {
+            name: string,
+            op: string,
+            value: string
+          }[]
+        },
+        threshold: number,
+        period: number,
+        action: {
+          mode: string,
+          timeout: string,
+          response?: {
+            content_type: string,
+            body: string
+          }
+        }
+      },
+    ): ResponseObjectPromise;
     browse(): ResponseObjectPromise;
   }
 

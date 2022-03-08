@@ -1,11 +1,12 @@
 {
   "name": "cloudflare",
-  "version": "2.9.5",
+  "version": "2.9.6",
   "description": "CloudFlare API client",
   "author": "Terin Stock <terinjokes@gmail.com>",
   "bugs": {
     "url": "https://github.com/cloudflare/node-cloudflare/issues"
   },
+  "typings": "types.d.ts",
   "dependencies": {
     "autocreate": "^1.1.0",
     "es-class": "^2.1.1",

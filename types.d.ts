@@ -76,6 +76,7 @@ declare namespace Cloudflare {
       zone_id: string,
       record: DnsRecord,
     ): ResponseObjectPromise;
+    list(): ResponseObjectPromise;
   }
 
   interface EnterpriseZoneWorkerScripts {
